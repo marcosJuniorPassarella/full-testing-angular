@@ -3,10 +3,17 @@
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve",
+    "start": "ng serve  --proxy-config ./proxy.json",
+    "server": "ts-node -P ./server/server.tsconfig.json ./server/server.ts",
     "build": "ng build",
-    "watch": "ng build --watch --configuration development",
-    "test": "ng test"
+    "test": "ng test",
+    "lint": "ng lint",
+    "cypress:open": "cypress open",
+    "cypress:run": "cypress run",
+    "build:prod": "ng build --prod",
+    "start:prod": "http-server ./dist -a localhost -p 4200",
+    "build-and-start:prod": "run-s build:prod start:prod",
+    "e2e": "start-server-and-test build-and-start:prod http://localhost:4200 cypress:run"
   },
   "private": true,
   "dependencies": {
