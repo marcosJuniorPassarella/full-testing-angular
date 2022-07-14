@@ -107,5 +107,8 @@
       }
     }
   },
-  "defaultProject": "full-testing-angular"
+  "defaultProject": "full-testing-angular",
+  "cli": {
+    "analytics": "01963aab-b3cf-4ec6-8bd4-26e72c26246e"
+  }
 }
