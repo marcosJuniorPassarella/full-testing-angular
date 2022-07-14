@@ -24,14 +24,16 @@ import { CourseDialogComponent } from './course-dialog/course-dialog.component';
 import { CourseCardListComponent } from './course-card-list/course-card-list.component';
 import { HomeComponent } from './home/home.component';
 import { AboutComponent } from '../about/about.component';
+import { CourseResolver } from './services/course.resolver';
+import { CoursesService } from './services/courses.service';
 
 @NgModule({
   declarations: [
-    CourseComponent,
-    CourseDialogComponent,
-    CourseCardListComponent,
     HomeComponent,
     AboutComponent,
+    CourseComponent,
+    CourseCardListComponent,
+    CourseDialogComponent,
   ],
   imports: [
     CommonModule,
@@ -61,5 +63,6 @@ import { AboutComponent } from '../about/about.component';
     CourseCardListComponent,
     HomeComponent,
   ],
+  providers: [CoursesService, CourseResolver],
 })
 export class CoursesModule {}
