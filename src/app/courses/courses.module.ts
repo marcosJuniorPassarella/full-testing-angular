@@ -21,11 +21,13 @@ import { MatMomentDateModule } from '@angular/material-moment-adapter';
 import { ReactiveFormsModule } from '@angular/forms';
 import { CourseComponent } from './course/course.component';
 import { CourseDialogComponent } from './course-dialog/course-dialog.component';
+import { CourseCardListComponent } from './course-card-list/course-card-list.component';
 
 @NgModule({
   declarations: [
     CourseComponent,
-    CourseDialogComponent
+    CourseDialogComponent,
+    CourseCardListComponent
   ],
   imports: [
     CommonModule,
