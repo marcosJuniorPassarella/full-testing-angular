@@ -23,6 +23,7 @@ import { CourseComponent } from './course/course.component';
 import { CourseDialogComponent } from './course-dialog/course-dialog.component';
 import { CourseCardListComponent } from './course-card-list/course-card-list.component';
 import { HomeComponent } from './home/home.component';
+import { AboutComponent } from '../about/about.component';
 
 @NgModule({
   declarations: [
@@ -30,6 +31,7 @@ import { HomeComponent } from './home/home.component';
     CourseDialogComponent,
     CourseCardListComponent,
     HomeComponent,
+    AboutComponent,
   ],
   imports: [
     CommonModule,

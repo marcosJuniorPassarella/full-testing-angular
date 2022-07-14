@@ -1,10 +1,34 @@
 import { NgModule } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
+import { Routes, RouterModule } from '@angular/router';
+import { HomeComponent } from './courses/home/home.component';
+import { CourseComponent } from './courses/course/course.component';
+import { CourseResolver } from './courses/services/course.resolver';
+import { AboutComponent } from './about/about.component';
 
-const routes: Routes = [];
+const routes: Routes = [
+  {
+    path: '',
+    component: HomeComponent,
+  },
+  {
+    path: 'about',
+    component: AboutComponent,
+  },
+  {
+    path: 'courses/:id',
+    component: CourseComponent,
+    resolve: {
+      course: CourseResolver,
+    },
+  },
+  {
+    path: '**',
+    redirectTo: '/',
+  },
+];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  imports: [RouterModule.forRoot(routes, { relativeLinkResolution: 'legacy' })],
+  exports: [RouterModule],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}
