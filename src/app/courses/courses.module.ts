@@ -22,12 +22,14 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { CourseComponent } from './course/course.component';
 import { CourseDialogComponent } from './course-dialog/course-dialog.component';
 import { CourseCardListComponent } from './course-card-list/course-card-list.component';
+import { HomeComponent } from './home/home.component';
 
 @NgModule({
   declarations: [
     CourseComponent,
     CourseDialogComponent,
-    CourseCardListComponent
+    CourseCardListComponent,
+    HomeComponent,
   ],
   imports: [
     CommonModule,
@@ -50,6 +52,12 @@ import { CourseCardListComponent } from './course-card-list/course-card-list.com
     MatMomentDateModule,
     ReactiveFormsModule,
     AppRoutingModule,
+  ],
+  exports: [
+    CourseComponent,
+    CourseDialogComponent,
+    CourseCardListComponent,
+    HomeComponent,
   ],
 })
 export class CoursesModule {}

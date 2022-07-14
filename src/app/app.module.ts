@@ -7,6 +7,7 @@ import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatButtonModule } from '@angular/material/button';
+import { CoursesModule } from './courses/courses.module';
 
 @NgModule({
   declarations: [AppComponent],
@@ -18,6 +19,7 @@ import { MatButtonModule } from '@angular/material/button';
     HttpClientModule,
     MatToolbarModule,
     MatButtonModule,
+    CoursesModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
