@@ -20,10 +20,12 @@ import { AppRoutingModule } from '../app-routing.module';
 import { MatMomentDateModule } from '@angular/material-moment-adapter';
 import { ReactiveFormsModule } from '@angular/forms';
 import { CourseComponent } from './course/course.component';
+import { CourseDialogComponent } from './course-dialog/course-dialog.component';
 
 @NgModule({
   declarations: [
-    CourseComponent
+    CourseComponent,
+    CourseDialogComponent
   ],
   imports: [
     CommonModule,
