@@ -19,9 +19,12 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { AppRoutingModule } from '../app-routing.module';
 import { MatMomentDateModule } from '@angular/material-moment-adapter';
 import { ReactiveFormsModule } from '@angular/forms';
+import { CourseComponent } from './course/course.component';
 
 @NgModule({
-  declarations: [],
+  declarations: [
+    CourseComponent
+  ],
   imports: [
     CommonModule,
     MatMenuModule,
