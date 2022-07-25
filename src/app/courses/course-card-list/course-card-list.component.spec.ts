@@ -6,10 +6,10 @@ describe('CourseCardListComponent', () => {
   let component: CourseCardListComponent;
   let fixture: ComponentFixture<CourseCardListComponent>;
 
-  beforeEach(() => {
+  beforeEach(async () => {
     TestBed.configureTestingModule({
-      imports: [CoursesModule],
       declarations: [CourseCardListComponent],
+      imports: [CoursesModule],
     })
       .compileComponents()
       .then(() => {
@@ -19,7 +19,7 @@ describe('CourseCardListComponent', () => {
   });
 
   it('should create the component', () => {
-    pending();
+    expect(component).toBeTruthy();
   });
 
   it('should display the course list', () => {
