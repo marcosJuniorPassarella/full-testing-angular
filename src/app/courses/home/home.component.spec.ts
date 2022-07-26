@@ -7,6 +7,7 @@ import { CoursesService } from '../services/courses.service';
 import { setupCourses } from '../common/setup-test-data';
 import { By } from '@angular/platform-browser';
 import { of } from 'rxjs';
+import { click } from '../common/test-utils';
 
 describe('HomeComponent', () => {
   let fixture: ComponentFixture<HomeComponent>;
@@ -69,7 +70,19 @@ describe('HomeComponent', () => {
     expect(tabs.length).toBe(2);
   });
 
-  it('should display advanced courses when tab clicked', () => {
-    pending();
+  it('should display advanced courses when tab clicked', (done: DoneFn) => {
+    coursesService.findAllCourses.and.returnValue(of(setupCourses()));
+    fixture.detectChanges();
+    const tabs = el.queryAll(By.css('.mat-tab-label'));
+    click(tabs[1]);
+    fixture.detectChanges();
+    setTimeout(() => {
+      const cardTitles = el.queryAll(By.css('.mat-card-title'));
+      expect(cardTitles.length).toBeGreaterThan(0);
+      expect(cardTitles[0].nativeElement.textContent).toContain(
+        'Angular Security Course'
+      );
+    }, 500);
+    done();
   });
 });
