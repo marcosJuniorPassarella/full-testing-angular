@@ -1,17 +1,33 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import {
+  async,
+  ComponentFixture,
+  TestBed,
+  waitForAsync,
+} from '@angular/core/testing';
 import { DebugElement } from '@angular/core';
 import { HomeComponent } from './home.component';
 import { CoursesModule } from '../courses.module';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
+import { CoursesService } from '../services/courses.service';
 
 describe('HomeComponent', () => {
   let fixture: ComponentFixture<HomeComponent>;
   let component: HomeComponent;
   let el: DebugElement;
 
-  beforeEach(() => {
+  beforeEach(waitForAsync(() => {
+    const coursesServiceSpy = jasmine.createSpyObj('CoursesService', [
+      'findAllCourses',
+    ]);
+
     TestBed.configureTestingModule({
       imports: [CoursesModule, NoopAnimationsModule],
+      providers: [
+        {
+          provide: CoursesService,
+          useValue: coursesServiceSpy,
+        },
+      ],
     })
       .compileComponents()
       .then(() => {
@@ -19,7 +35,7 @@ describe('HomeComponent', () => {
         component = fixture.componentInstance;
         el = fixture.debugElement;
       });
-  });
+  }));
 
   it('should create the component', () => {
     expect(component).toBeTruthy();
