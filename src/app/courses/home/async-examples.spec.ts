@@ -1,4 +1,4 @@
-import { fakeAsync, tick } from '@angular/core/testing';
+import { fakeAsync, flush, tick } from '@angular/core/testing';
 
 fdescribe('Async Testing Examples', () => {
   it('Asynchronous test example with Jasmine done()', (done: DoneFn) => {
@@ -16,8 +16,8 @@ fdescribe('Async Testing Examples', () => {
     setTimeout(() => {
       console.log('runing assertions');
       test = true;
-      expect(test).toBeTruthy();
     }, 1000);
-    tick(1000);
+    flush();
+    expect(test).toBeTruthy();
   }));
 });
