@@ -1,13 +1,19 @@
-import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
+import {
+  ComponentFixture,
+  TestBed,
+  waitForAsync,
+  fakeAsync,
+} from '@angular/core/testing';
 import { DebugElement } from '@angular/core';
-import { HomeComponent } from './home.component';
-import { CoursesModule } from '../courses.module';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
-import { CoursesService } from '../services/courses.service';
-import { setupCourses } from '../common/setup-test-data';
 import { By } from '@angular/platform-browser';
 import { of } from 'rxjs';
+import { flush } from '@angular/core/testing';
+import { CoursesModule } from '../courses.module';
+import { setupCourses } from '../common/setup-test-data';
 import { click } from '../common/test-utils';
+import { CoursesService } from '../services/courses.service';
+import { HomeComponent } from './home.component';
 
 describe('HomeComponent', () => {
   let fixture: ComponentFixture<HomeComponent>;
@@ -70,19 +76,17 @@ describe('HomeComponent', () => {
     expect(tabs.length).toBe(2);
   });
 
-  it('should display advanced courses when tab clicked', (done: DoneFn) => {
+  it('should display advanced courses when tab clicked', fakeAsync(() => {
     coursesService.findAllCourses.and.returnValue(of(setupCourses()));
     fixture.detectChanges();
     const tabs = el.queryAll(By.css('.mat-tab-label'));
     click(tabs[1]);
     fixture.detectChanges();
-    setTimeout(() => {
-      const cardTitles = el.queryAll(By.css('.mat-card-title'));
-      expect(cardTitles.length).toBeGreaterThan(0);
-      expect(cardTitles[0].nativeElement.textContent).toContain(
-        'Angular Security Course'
-      );
-    }, 500);
-    done();
-  });
+    flush();
+    const cardTitles = el.queryAll(By.css('.mat-tab-body-active'));
+    expect(cardTitles.length).toBeGreaterThan(0);
+    expect(cardTitles[0].nativeElement.textContent).toContain(
+      'Angular Security Course'
+    );
+  }));
 });
