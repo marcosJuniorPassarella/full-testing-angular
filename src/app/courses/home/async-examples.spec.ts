@@ -20,4 +20,29 @@ fdescribe('Async Testing Examples', () => {
     flush();
     expect(test).toBeTruthy();
   }));
+
+  // EXEMPLO ONDE É POSSIVEL NOTAR QUE Promises SÃO CHAMADAS ANTES DE setTimeout()
+  // ISSO ACONTECE PORQUE Promises são MicroTasks e setTimeout() são MacroTasks
+  fit('Asynchronous test example - plain Promise', () => {
+    let test = false;
+    console.log('Creating promise');
+    setTimeout(() => {
+      console.log('setTimeout() first callback triggered.');
+    });
+    setTimeout(() => {
+      console.log('setTimeout() second callback triggered.');
+    });
+
+    Promise.resolve()
+      .then(() => {
+        console.log('Promise first then() evaluated successfully');
+        return Promise.resolve();
+      })
+      .then(() => {
+        console.log('Promise second then() evaluated sucessfuly');
+        test = true;
+      });
+    console.log('Runing test assertions');
+    expect(test).toBeTruthy();
+  });
 });
