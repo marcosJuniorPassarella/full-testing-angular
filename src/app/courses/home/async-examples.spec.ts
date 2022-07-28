@@ -1,4 +1,4 @@
-import { fakeAsync, flush, tick } from '@angular/core/testing';
+import { fakeAsync, flush, flushMicrotasks, tick } from '@angular/core/testing';
 
 fdescribe('Async Testing Examples', () => {
   it('Asynchronous test example with Jasmine done()', (done: DoneFn) => {
@@ -23,26 +23,20 @@ fdescribe('Async Testing Examples', () => {
 
   // EXEMPLO ONDE É POSSIVEL NOTAR QUE Promises SÃO CHAMADAS ANTES DE setTimeout()
   // ISSO ACONTECE PORQUE Promises são MicroTasks e setTimeout() são MacroTasks
-  fit('Asynchronous test example - plain Promise', () => {
+  fit('Asynchronous test example - plain Promise', fakeAsync(() => {
     let test = false;
     console.log('Creating promise');
-    setTimeout(() => {
-      console.log('setTimeout() first callback triggered.');
-    });
-    setTimeout(() => {
-      console.log('setTimeout() second callback triggered.');
-    });
-
     Promise.resolve()
       .then(() => {
         console.log('Promise first then() evaluated successfully');
+        test = true;
         return Promise.resolve();
       })
       .then(() => {
         console.log('Promise second then() evaluated sucessfuly');
-        test = true;
       });
+    flushMicrotasks();
     console.log('Runing test assertions');
     expect(test).toBeTruthy();
-  });
+  }));
 });
